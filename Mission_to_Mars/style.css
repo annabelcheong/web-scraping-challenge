@@ -1,0 +1,56 @@
+
+.mars_heading{
+    background-color: rgb(194, 189, 189);
+}
+
+h1{
+    font-family: "Palatino Linotype";
+    text-align: center;
+    font-weight: bold;
+}
+
+h2{
+    font-family: "Palatino Linotype";
+    text-align: left;
+    font-weight: bold;
+}
+
+.hems_heading{
+    text-align: center;
+}
+
+h3{
+    font-family: "Palatino Linotype";
+    text-align: left;
+    font-weight: bold;
+}
+
+h4{
+    font-family: "Palatino Linotype";
+    text-align: left;
+    font-weight: bold;
+}
+
+h5{
+    font-family: "Palatino Linotype";
+    text-align: left;
+    font-weight: bold;
+}
+
+p{
+    font-family:  "Palatino Linotype";
+    text-align: left;
+}
+
+.hems_sect{
+    border-style: solid;
+    border-width:2px;
+    border-color:rgb(170, 152, 119);
+    text-align: center;
+
+}
+
+
+
+
+
