@@ -11,20 +11,19 @@ mongo = PyMongo(app, uri="mongodb://localhost:27017/mars_db")
 # Route to render index.html template using data from Mongo
 @app.route("/")
 def home():
-    mars_collect = mongo.db.mars_collect.find_one()
-    return render_template("index.html", dict=mars_collect)
+    mars_collect_data = mongo.db.mars_collect.find_one()
+    return render_template("index.html", dict = mars_collect_data)
 
 @app.route("/scrape")
-def scraper():
-    # Assign collection to mars_collect variable
-    mars_collect = mongo.db.mars_collect
+def scrape():
+    # # Assign collection to mars_collect variable
+    # mars_collect = mongo.db.mars_collect
     # Scrapes mars data from scrape_mars.py
-    mars_data = scrape_mars.scrape()    
+    mars_data = scrape_mars.scrape_info()    
     # Update mars_collect (collection name) with the variable
-    mars_collect.update({}, mars_data, upsert=True)
+    mongo.db.mars_collect.update({}, mars_data, upsert=True)
     return redirect("/", code=302)
 
 
 if __name__ == "__main__":
     app.run(debug=True)
-
