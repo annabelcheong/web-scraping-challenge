@@ -32,15 +32,16 @@
     <div class="row">
       <div class="col-12 py-3">
         <h2>Latest Mars News</h2>
-        <h5>{{dict.news_title}}</h5>
-        <p>{{dict.news_p}}</p>
+        <h5>{{mars_dict.news_title}}</h5>
+        <p>{{mars_dict.news_p}}</p>
       </div>
     </div>
 
     <div class="row">
       <div class="col-9">
         <h2>Featured Mars Image</h2>
-        <img src="{{dict.featured_image_url}}" alt="Featured Mars Image" class=img-fluid>
+      
+        <!-- <img src="{{dict.featured_image_url}}" alt="Featured Mars Image" class=img-fluid> -->
       </div>
       <div class="col-3">
         <h3>Mars Facts</h3>
@@ -55,28 +56,27 @@
           <h2 class="hems_heading">Mars Hemispheres</h2>
           <hr>
       </div>
-        
-      <!-- list(mars_data.values())[3][0]['img_url'] -->
 
       <!-- First row of imgs on medium screen mars_img1.jpg -->
-      {% for item in dict %}
+      {% for item in mars_dict.hemisphere_image_urls %}
            
-        <div class="col-md-6 col-12"><img src="{{ item.hemisphere_image_urls['img_url'] }}" alt="Featured Mars Image">
+        <div class="col-md-6 col-12"><img src="{{ item.img1_url }}" alt="Featured Mars Image1">
           <h5>Valles Marineris Hemisphere Enhanced</h5>
         </div> 
-              
-        <div class="col-md-6 col-12"><img src="{{ item.hemisphere_image_urls['img_url'] }}" alt="Featured Mars Image">
+
+        <div class="col-md-6 col-12"><img src="{{ item.img2_url }}" alt="Featured Mars Image2">
           <h5>Cerberus Hemisphere Enhanced</h5>
-        </div> 
+        </div>  
+      
+        <!-- Second row of imgs on medium screen -->
+        <div class="col-md-6 col-12"><img src="{{ item.img3_url }}" alt="Featured Mars Image3">
+          <h5>Schiaparelli Hemisphere Enhanced</h5>
+        </div>
+        <div class="col-md-6 col-12"><img src="{{ item.img4_url }}" alt="Featured Mars Image4">
+          <h5>Syrtis Major Hemisphere Enhanced</h5>
+        </div>  
+        
       {% endfor %}
-      <!-- Second row of imgs on medium screen -->
-      <!-- <div class="col-md-6 col-12"><img src="{{ dict.featured_image_url }}" alt="Featured Mars Image">
-      <h5>Schiaparelli Hemisphere Enhanced</h5>
-      </div>
-      <div class="col-md-6 col-12"><img src="{{ dict.featured_image_url }}" alt="Featured Mars Image">
-      <h5>Syrtis Major Hemisphere Enhanced</h5>
-      </div>  -->
-      <!-- </div>  -->
 
     </div> 
        
