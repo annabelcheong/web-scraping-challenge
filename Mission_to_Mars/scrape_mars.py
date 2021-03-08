@@ -66,7 +66,7 @@ def scrape_info():
     df = tables[0]
 
     # Rename columns
-    df.columns = ['Variables', 'Mars']
+    df.columns = ['', 'Mars']
 
     # Set index to variable column
     df.set_index('', inplace=True)
@@ -99,12 +99,11 @@ def scrape_info():
     # soup = bs(html, "html.parser")
 
     hemisphere_image_urls = [
-    {"title1": "Valles Marineris Hemisphere", "img1_url": "https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/valles_marineris_enhanced.tif"},
-    {"title2": "Cerberus Hemisphere", "img2_url": "https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/cerberus_enhanced.tif"},
-    {"title3": "Schiaparelli Hemisphere", "img3_url": "https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/schiaparelli_enhanced.tif"},
-    {"title4": "Syrtis Major Hemisphere", "img4_url": "https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/syrtis_major_enhanced.tif"},
+    {"title": "Valles Marineris Hemisphere", "img_url": "https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/valles_marineris_enhanced.tif/full.jpg"},
+    {"title": "Cerberus Hemisphere", "img_url": "https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/cerberus_enhanced.tif/full.jpg"},
+    {"title": "Schiaparelli Hemisphere", "img_url": "https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/schiaparelli_enhanced.tif/full.jpg"},
+    {"title": "Syrtis Major Hemisphere", "img_url": "https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/syrtis_major_enhanced.tif/full.jpg"}
     ]
-
     # Store data in a dictionary
     mars_data = {
         "news_title": news_title,

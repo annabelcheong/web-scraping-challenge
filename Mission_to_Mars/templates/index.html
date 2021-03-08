@@ -59,49 +59,14 @@
       </div>
 
       <!-- First row of imgs on medium screen mars_img1.jpg -->
-           
-        <div class="col-md-6 col-12"><img src="{{ mars_dict.hemisphere_image_urls.img1_url }}" alt="Featured Mars Image1">
-          <h5>Valles Marineris Hemisphere Enhanced</h5>
-        </div> 
-
-        <div class="col-md-6 col-12"><img src="{{ mars_dict.hemisphere_image_urls.img2_url}}" alt="Featured Mars Image2">
-          <h5>Cerberus Hemisphere Enhanced</h5>
-        </div>  
-      
-        <!-- Second row of imgs on medium screen -->
-        <div class="col-md-6 col-12"><img src="{{ mars_dict.hemisphere_image_urls.img3_url }}" alt="Featured Mars Image3">
-          <h5>Schiaparelli Hemisphere Enhanced</h5>
-        </div>
-        <div class="col-md-6 col-12"><img src="{{ mars_dict.hemisphere_image_urls.img4_url }}" alt="Featured Mars Image4">
-          <h5>Syrtis Major Hemisphere Enhanced</h5>
-        </div>  
-
-      
-
-      <!-- First row of imgs on medium screen mars_img1.jpg
       {% for item in mars_dict.hemisphere_image_urls %}
-           
-        <div class="col-md-6 col-12"><img src="{{ item.img1_url }}" alt="Featured Mars Image1">
-          <h5>Valles Marineris Hemisphere Enhanced</h5>
-        </div> 
-
-        <div class="col-md-6 col-12"><img src="{{ item.img2_url }}" alt="Featured Mars Image2">
-          <h5>Cerberus Hemisphere Enhanced</h5>
-        </div>  
-      
-        Second row of imgs on medium screen 
-        <div class="col-md-6 col-12"><img src="{{ item.img3_url }}" alt="Featured Mars Image3">
-          <h5>Schiaparelli Hemisphere Enhanced</h5>
+        <div class="col-md-6 col-6">
+          <div class="thumbnail">
+            <img src="{{ item.img_url }}" alt="Featured Mars Image" style=width:100%>
+            <div class="caption"> <h5>{{item.title}}</h5> </div>
+          </div> 
         </div>
-        <div class="col-md-6 col-12"><img src="{{ item.img4_url }}" alt="Featured Mars Image4">
-          <h5>Syrtis Major Hemisphere Enhanced</h5>
-        </div>  
-        
-      {% endfor %} --> 
-
-
-
-
+      {% endfor %}
 
 
     </div> 
