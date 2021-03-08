@@ -66,11 +66,21 @@ def scrape_info():
     df = tables[0]
 
     # Rename columns
-    df.columns = ['', 'Mars']
+    df.columns = ['Variables', 'Mars']
+
+    # Set index to variable column
+    df.set_index('', inplace=True)
 
     # Convert table to an html string
-    html_table = df.to_html()
-    
+    html_table = df.to_html(justify='left')
+
+    # Text-align the headingtext to the left
+    html_table = html_table.replace('<th>','<th style="text-align: left;">')
+
+
+    # # Text-align the text to the left
+    # html_table = html_table.replace('<tr style="text-align: right;">','<tr style="text-align: left;">')
+
     # Clean up html and remove the \n
     #for html home page
     html_table = html_table.replace('\n', '')
@@ -100,7 +110,7 @@ def scrape_info():
         "news_title": news_title,
         "news_p": news_p,
         "featured_image_url": featured_image_url,
-        # "html_table":  html_table,
+        "html_table":  html_table,
         "hemisphere_image_urls": hemisphere_image_urls
     }
 
