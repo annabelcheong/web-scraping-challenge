@@ -59,14 +59,16 @@
       <!-- list(mars_data.values())[3][0]['img_url'] -->
 
       <!-- First row of imgs on medium screen mars_img1.jpg -->
-      <div class="col-md-6 col-12"><img src="{{ dict.hemisphere_image_urls[0][0].img_url }}" alt="Featured Mars Image">
-        <h5>Valles Marineris Hemisphere Enhanced</h5>
-      </div> 
-            
-      <div class="col-md-6 col-12"><img src="{{ dict.hemisphere_image_urls[0][1].img_url }}" alt="Featured Mars Image">
-        <h5>Cerberus Hemisphere Enhanced</h5>
-      </div> 
-
+      {% for item in dict %}
+           
+        <div class="col-md-6 col-12"><img src="{{ item.hemisphere_image_urls['img_url'] }}" alt="Featured Mars Image">
+          <h5>Valles Marineris Hemisphere Enhanced</h5>
+        </div> 
+              
+        <div class="col-md-6 col-12"><img src="{{ item.hemisphere_image_urls['img_url'] }}" alt="Featured Mars Image">
+          <h5>Cerberus Hemisphere Enhanced</h5>
+        </div> 
+      {% endfor %}
       <!-- Second row of imgs on medium screen -->
       <!-- <div class="col-md-6 col-12"><img src="{{ dict.featured_image_url }}" alt="Featured Mars Image">
       <h5>Schiaparelli Hemisphere Enhanced</h5>
