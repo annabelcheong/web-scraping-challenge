@@ -1,12 +1,24 @@
 
+.back{
+    background-image: linear-gradient(to bottom right, #534666, #dc8665);
+}
+
+.btn{
+    text-align: center;
+    background-color: rgb(149, 160, 189);
+}
 .mars_heading{
-    background-color: rgb(194, 189, 189);
+    /* background-color: rgb(194, 189, 189); */
+    background-color: rgb(204, 159, 100);
+    background-image: linear-gradient(to bottom right, rgb(194, 189, 189), #ad6e54);
+    border: outset rgb(95, 87, 87);
 }
 
 h1{
     font-family: "Palatino Linotype";
     text-align: center;
     font-weight: bold;
+   
 }
 
 h2{
@@ -50,10 +62,7 @@ p{
 
 }
 
-/* .four_imgs{
-        width: 100%;
-       
-} */
+
 
 
 
