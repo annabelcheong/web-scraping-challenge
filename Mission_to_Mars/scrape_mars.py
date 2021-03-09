@@ -14,6 +14,9 @@ def init_browser():
 def scrape_info():
     browser = init_browser()
 
+    #############################
+    # News Title, News Paragraph
+    #############################
     # URL of page to be scraped
     url = "https://mars.nasa.gov/news/"
     browser.visit(url)
@@ -23,8 +26,6 @@ def scrape_info():
     # Scrape page into soup
     html = browser.html
     soup = bs(html, 'html.parser')
-
-    ##### Store VARIABLES in function #######
     
     ### News Title, News Paragraph ###
     #for html home page
@@ -32,7 +33,10 @@ def scrape_info():
     #for html home page
     news_p = soup.find('div', class_='article_teaser_body').text
 
-    ## Main Feature Image ##
+    #############################
+    # Main Feature Image 
+    #############################
+    
     # Using splinter and retrieving content from url
     url = "https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/index.html"
     browser.visit(url)
@@ -55,7 +59,10 @@ def scrape_info():
     #for html home page
     featured_image_url = url + relative_image_path 
 
-    ## Pandas mars_data_table ##
+   
+     #############################
+    # Pandas mars_data_table 
+    #############################
 
     # URL
     url = 'https://space-facts.com/mars/'
@@ -77,33 +84,105 @@ def scrape_info():
     # Text-align the headingtext to the left
     html_table = html_table.replace('<th>','<th style="text-align: left;">')
 
-
-    # # Text-align the text to the left
-    # html_table = html_table.replace('<tr style="text-align: right;">','<tr style="text-align: left;">')
-
     # Clean up html and remove the \n
-    #for html home page
+    # for html home page
     html_table = html_table.replace('\n', '')
     
 
-    ## Four Hemisphere Images ##
+    #############################
+    # HEMISPHERE IMAGES (BY URL)
+    #############################
 
-    # # Using splinter and retrieving content from url
-    # url = 'https://astrogeology.usgs.gov/search/map/Mars/Viking/cerberus_enhanced'
-    # browser.visit(url)
+    # Using splinter and retrieving content from url
+    url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
+    browser.visit(url)
+    time.sleep(1)
 
-    # time.sleep(1)
+    # Scrape page into Soup
+    html = browser.html
+    soup = bs(html, "html.parser")
 
-    # # Scrape page into Soup
-    # html = browser.html
-    # soup = bs(html, "html.parser")
+    # Store title into title_list once retrieved from the soup
+    title_list = []
 
-    hemisphere_image_urls = [
-    {"title": "Valles Marineris Hemisphere", "img_url": "https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/valles_marineris_enhanced.tif/full.jpg"},
-    {"title": "Cerberus Hemisphere", "img_url": "https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/cerberus_enhanced.tif/full.jpg"},
-    {"title": "Schiaparelli Hemisphere", "img_url": "https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/schiaparelli_enhanced.tif/full.jpg"},
-    {"title": "Syrtis Major Hemisphere", "img_url": "https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/syrtis_major_enhanced.tif/full.jpg"}
+    results = soup.find_all('div', class_='item')
+
+    for result in results:
+        title = result.find('h3').text
+        title_list.append(title)
+
+    #############################
+
+    # Objective: to attain 4 image links (higher resolution files)
+    # Get the specific url where the 4 image links are at
+    base_url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
+    browser.visit(base_url)
+    time.sleep(1)
+
+    # Scrape page into Soup
+    html = browser.html
+    soup = bs(html, "html.parser")
+
+    results = soup.find_all('div', class_='description')
+
+    rel_url_list = []
+
+    for result in results:
+        rel_url  = result.find('a').attrs.get("href")
+        
+        rel_url_list.append(rel_url)
+
+    #############################
+    # List out the 4 img_urls and store them in the img_url_page_list
+    img_url_page_list = []
+    img_url_list = []
+    for rel_url in rel_url_list:
+        
+        img_page_url = "https://astrogeology.usgs.gov" + rel_url
+        img_url_page_list.append(img_page_url)
+        print(img_page_url)
+
+        # In the for loop on each img_page_url, use beautiful soup to extract out the 
+        # specific img_url into the img_url_list
+    
+        browser.visit(img_page_url)
+        time.sleep(1)
+
+        # Scrape page into Soup and find the img_url
+        html = browser.html
+        soup = bs(html, "html.parser")
+
+        results = soup.find_all('div', class_='downloads')
+
+        # img_url_list = []
+        for result in results:
+            img_url  = result.find('a').attrs.get("href")
+
+        img_url_list.append(img_url)
+
+    #############################
+    # Define variables in the hemisphere_image_urls list of dictionaries
+    hemisphere_image_urls = [ 
+    {'title':title_list[0], 'img_url': img_url_list[0] }, 
+    {'title':title_list[1], 'img_url': img_url_list[1] },
+    {'title':title_list[2], 'img_url': img_url_list[2] },
+    {'title':title_list[3], 'img_url': img_url_list[3] }
     ]
+
+    # hemisphere_image_urls = [
+    # {"title": "Valles Marineris Hemisphere", "img_url": "https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/valles_marineris_enhanced.tif/full.jpg"},
+    # {"title": "Cerberus Hemisphere", "img_url": "https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/cerberus_enhanced.tif/full.jpg"},
+    # {"title": "Schiaparelli Hemisphere", "img_url": "https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/schiaparelli_enhanced.tif/full.jpg"},
+    # {"title": "Syrtis Major Hemisphere", "img_url": "https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/syrtis_major_enhanced.tif/full.jpg"}
+    # ]
+
+
+    #############################
+    # FINAL SECTION
+    #############################
+    # STORE VARIABLES INTO DICTIONARY
+    #############################
+
     # Store data in a dictionary
     mars_data = {
         "news_title": news_title,
@@ -113,7 +192,7 @@ def scrape_info():
         "hemisphere_image_urls": hemisphere_image_urls
     }
 
-    # print(mars_data)
+    ##################################
 
     # Close the browser after scraping
     browser.quit()
