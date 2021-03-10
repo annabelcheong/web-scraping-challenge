@@ -5,13 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Responsive Columns</title>
+  <title>Mission to Mars</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
   <link rel="stylesheet" href="../static/style.css">
-  <!-- <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/style.css') }}"> -->
-
-
 </head>
+
 <!-- ---------------------------- -->
 
 <body class="back">
@@ -24,7 +22,7 @@
         </h1>
         <br>
         <div class="col-12 justify-content-center">
-        <p><a class="btn btn-dark btn-lg" href="/scrape" role="button">Get Data!</a></p>
+        <p><a class="col-12 btn btn-dark btn-lg" href="/scrape" role="button">Get Data!</a></p>
         </div>  
       </div>
     </div>
@@ -59,7 +57,7 @@
           <hr>
       </div>
 
-      <!-- First row of imgs on medium screen mars_img1.jpg -->
+      <!-- 4 images  -->
       {% for item in mars_dict.hemisphere_image_urls %}
         <div class="col-md-6 col-6">
           <div class="thumbnail">

@@ -56,7 +56,6 @@ def scrape_info():
     relative_image_path = soup.find('img',class_='headerimage')["src"]
     
     # featured_image_url
-    #for html home page
     featured_image_url = url + relative_image_path 
 
    
@@ -70,6 +69,7 @@ def scrape_info():
     # Read url(html) with pandas
     tables = pd.read_html(url)
 
+    # Assign first table to df variable
     df = tables[0]
 
     # Rename columns
@@ -92,6 +92,8 @@ def scrape_info():
     #############################
     # HEMISPHERE IMAGES (BY URL)
     #############################
+    # Objective: to attain the title of the image and 
+    # put these 4 titles into a title_list[]
 
     # Using splinter and retrieving content from url
     url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
@@ -113,8 +115,9 @@ def scrape_info():
 
     #############################
 
-    # Objective: to attain 4 image links (higher resolution files)
-    # Get the specific url where the 4 image links are at
+    ## Overall Objective: To attain 4 image url links (jpg - higher resolution files)
+
+    # Get the specific mar's hemisphere url are located (1 url page per mars' hemisphere, 4 total)
     base_url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
     browser.visit(base_url)
     time.sleep(1)
@@ -154,7 +157,6 @@ def scrape_info():
 
         results = soup.find_all('div', class_='downloads')
 
-        # img_url_list = []
         for result in results:
             img_url  = result.find('a').attrs.get("href")
 
@@ -168,14 +170,6 @@ def scrape_info():
     {'title':title_list[2], 'img_url': img_url_list[2] },
     {'title':title_list[3], 'img_url': img_url_list[3] }
     ]
-
-    # hemisphere_image_urls = [
-    # {"title": "Valles Marineris Hemisphere", "img_url": "https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/valles_marineris_enhanced.tif/full.jpg"},
-    # {"title": "Cerberus Hemisphere", "img_url": "https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/cerberus_enhanced.tif/full.jpg"},
-    # {"title": "Schiaparelli Hemisphere", "img_url": "https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/schiaparelli_enhanced.tif/full.jpg"},
-    # {"title": "Syrtis Major Hemisphere", "img_url": "https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/syrtis_major_enhanced.tif/full.jpg"}
-    # ]
-
 
     #############################
     # FINAL SECTION
@@ -199,5 +193,3 @@ def scrape_info():
 
     # Return results
     return mars_data
-   
-

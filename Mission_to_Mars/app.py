@@ -16,9 +16,8 @@ def home():
 
 @app.route("/scrape")
 def scrape():
-    # # Assign collection to mars_collect variable
-    # mars_collect = mongo.db.mars_collect
-    # Scrapes mars data from scrape_mars.py
+    # Assign data from scrape_mars.py into mars_data variable
+    # Scrapes mars data from scrape_mars.py's scrape_info() function
     mars_data = scrape_mars.scrape_info()    
     # Update mars_collect (collection name) with the variable
     mongo.db.mars_collect.update({}, mars_data, upsert=True)
