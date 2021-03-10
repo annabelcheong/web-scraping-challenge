@@ -18,11 +18,11 @@ This repository contains:
 		- index.html
 		(Values retrieved via dictionary variable from app.py)
 
-	-Static (folder)
+	- Static (folder)
 		- styles.css
 		(Formatting and aesthetic design to support index.html)
 
-	-Screenshots (folder)
+	- Screenshots (folder)
 	This folder contains 3 screenshots of the final produced local host page when running app.py.
 		- localhost page - Top Screen
 		- localhost page - Mid Screen
